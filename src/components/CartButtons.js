@@ -11,17 +11,17 @@ import { useProductsContext } from "../context/products_context";
 import { useCartContext } from "../context/cart_context";
 import { useUserContext } from "../context/user_context";
 
-const CartButtons = () => {
+const CartButtons = ({ closeSidebar }) => {
   return (
     <Wrapper className="cart-btn-wrapper">
-      <Link to="checkout" className="cart-btn">
+      <Link to="checkout" className="cart-btn" onClick={() => closeSidebar()}>
         Cart
         <span className="cart-container">
           <FaShoppingCart></FaShoppingCart>
           <span className="cart-value">12</span>
         </span>
       </Link>
-      <button type="button" className="auth-btn">
+      <button type="button" className="auth-btn" onClick={() => closeSidebar()}>
         Login <FaUserPlus></FaUserPlus>
       </button>
     </Wrapper>

@@ -72,7 +72,9 @@ const router = createBrowserRouter([
   },
 ]);
 root.render(
-  <RouterProvider router={router}>
-    <App />{" "}
-  </RouterProvider>
+  <ProductsProvider>
+    <RouterProvider router={router}>
+      <App />{" "}
+    </RouterProvider>
+  </ProductsProvider>
 );
