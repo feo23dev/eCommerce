@@ -9,8 +9,7 @@ import { useProductsContext } from "../context/products_context";
 import { useUserContext } from "../context/user_context";
 
 const Nav = () => {
-  const data = useProductsContext();
-  const openSidebar = data.openSidebar;
+  const { openSidebar, closeSidebar } = useProductsContext();
 
   return (
     <NavContainer>
@@ -30,7 +29,7 @@ const Nav = () => {
             </li>
           ))}
         </ul>
-        <CartButtons></CartButtons>
+        <CartButtons closeSidebar={closeSidebar}></CartButtons>
       </div>
     </NavContainer>
   );

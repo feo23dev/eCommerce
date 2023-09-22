@@ -3,9 +3,12 @@ import { FeaturedProducts, Hero, Services, Contact } from "../components";
 import { Outlet } from "react-router-dom";
 const HomePage = () => {
   return (
-    <>
-      <h4>home page</h4>
-    </>
+    <main>
+      <Hero></Hero>
+      <FeaturedProducts></FeaturedProducts>
+      <Services></Services>
+      <Contact></Contact>
+    </main>
   );
 };
 

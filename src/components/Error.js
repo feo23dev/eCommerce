@@ -1,6 +1,10 @@
-import React from 'react'
-const Error = () => {
-  return <h4>error element</h4>
-}
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-export default Error
+const Error = () => {
+  const navigate = useNavigate();
+
+  return <h1>ERROR ELEMENT !</h1>;
+};
+
+export default Error;

@@ -16,7 +16,13 @@ const products_reducer = (state, action) => {
       return { ...state, isSidebarOpen: true };
     case "SIDEBAR_CLOSE":
       return { ...state, isSidebarOpen: false };
-      break;
+    case GET_PRODUCTS_BEGIN:
+      return { ...state, products: action.payload };
+
+    case GET_PRODUCTS_ERROR:
+      return { ...state, isError: true };
+    case GET_PRODUCTS_SUCCESS:
+      return { ...state, isError: false };
     default:
       throw new Error("Unknown action");
   }
