@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 import { useState } from "react";
-const Stars = ({ stars }) => {
-  const [starState, setStarState] = useState(stars);
+const Stars = ({ stars, reviews }) => {
+  console.log("REVIEWSSS", reviews);
   const starArray = Array.from({ length: 5 }, (_, index) => {
-    if (starState > index + 1) {
+    if (stars > index + 1) {
       return <BsStarFill></BsStarFill>;
-    } else if (starState < index + 1 && starState > index) {
+    } else if (stars < index + 1 && stars > index) {
       return <BsStarHalf></BsStarHalf>;
     } else {
       return <BsStar></BsStar>;
@@ -16,8 +16,7 @@ const Stars = ({ stars }) => {
 
   return (
     <Wrapper>
-      <h4>Stars: {stars}</h4>
-      {starArray}
+      {starArray} {` (${reviews} customer reviews)`}
     </Wrapper>
   );
 };

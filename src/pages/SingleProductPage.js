@@ -29,7 +29,7 @@ const SingleProductPage = () => {
     description,
     stock,
     stars,
-    review,
+    reviews,
     sku,
     company,
     images,
@@ -47,6 +47,7 @@ const SingleProductPage = () => {
   if (single_product_loading) {
     return <Loading></Loading>;
   }
+  console.log("REEEEEEEE", reviews);
   return (
     <>
       <Wrapper>
@@ -61,7 +62,7 @@ const SingleProductPage = () => {
               <ProductImages images={images}></ProductImages>
               <section className="content">
                 <h2>{name}</h2>
-                <Stars stars={stars} />
+                <Stars stars={stars} reviews={reviews} />
                 <h5 className="price">{formatPrice(price)}</h5>
                 <p className="desc">{description}</p>
                 <p className="info">
