@@ -2,21 +2,26 @@ import React from "react";
 import styled from "styled-components";
 import { formatPrice } from "../utils/helpers";
 import { FaSearch } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const Product = ({ image, name, price }) => {
+const Product = ({ image, name, price, id }) => {
+  const navigate = useNavigate();
+
+  console.log("PRODUCT ID IS", id);
   return (
     <Wrapper>
+      {/* <Link to={`products/${id}`}>
+        <FaSearch></FaSearch>
+      </Link> */}
       <div className="container">
-        {" "}
-        <Link className="link">
+        <img src={image} alt={name}></img>
+        <Link to={`/products/${id}`} className="link">
           <FaSearch></FaSearch>
         </Link>
-        <img src={image} alt={name}></img>
       </div>
       <footer>
         <h5>{name}</h5>
-        <p>${price}</p>
+        <p>{formatPrice(price)}</p>
       </footer>
     </Wrapper>
   );

@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-const PageHero = ({ title }) => {
+const PageHero = ({ title, third = "" }) => {
   return (
     <Wrapper>
       <div className="section-center">
         <h3>
           {/* /home=> absolute path.  home => relative. slash sız yazarsan about/home a götürür */}
-          <Link to="/home">Home</Link>/ {title}
+          <Link to="/home">Home</Link>/ {title} {third}
         </h3>
       </div>
     </Wrapper>

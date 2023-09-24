@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
-import { useParams, useHistory } from 'react-router-dom'
-import { useProductsContext } from '../context/products_context'
-import { single_product_url as url } from '../utils/constants'
-import { formatPrice } from '../utils/helpers'
+import React, { useEffect } from "react";
+import { useParams, useHistory } from "react-router-dom";
+import { useProductsContext } from "../context/products_context";
+import { single_product_url as url } from "../utils/constants";
+import { formatPrice } from "../utils/helpers";
 import {
   Loading,
   Error,
@@ -10,13 +10,38 @@ import {
   AddToCart,
   Stars,
   PageHero,
-} from '../components'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+} from "../components";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const SingleProductPage = () => {
-  return <h4>single product page</h4>
-}
+  const {
+    fetchSingleProduct,
+    single_product_loading,
+    single_product_error,
+    single_product,
+  } = useProductsContext();
+  const { id } = useParams();
+  console.log(id, "IDDDDDDDDDDDDDDDDDDDD");
+  const { name } = single_product;
+
+  useEffect(() => {
+    fetchSingleProduct(url, id);
+    console.log("Fetch completed");
+  }, []);
+
+  if (single_product_error) {
+    return <h1>ERRORRRR</h1>;
+  }
+  if (single_product_loading) {
+    return <h1>LOADING</h1>;
+  }
+  return (
+    <>
+      <PageHero title={"products"} third={`/${name}`}></PageHero>
+    </>
+  );
+};
 
 const Wrapper = styled.main`
   .product-center {
@@ -50,6 +75,6 @@ const Wrapper = styled.main`
       font-size: 1.25rem;
     }
   }
-`
+`;
 
-export default SingleProductPage
+export default SingleProductPage;

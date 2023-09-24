@@ -17,12 +17,23 @@ const products_reducer = (state, action) => {
     case "SIDEBAR_CLOSE":
       return { ...state, isSidebarOpen: false };
     case GET_PRODUCTS_BEGIN:
-      return { ...state, products: action.payload };
-
+      return { ...state, products_loading: true };
     case GET_PRODUCTS_ERROR:
       return { ...state, isError: true };
     case GET_PRODUCTS_SUCCESS:
-      return { ...state, isError: false };
+      return { ...state, products: action.payload, products_loading: false };
+
+    case GET_SINGLE_PRODUCT_BEGIN:
+      return { ...state, single_product_loading: true };
+    case GET_SINGLE_PRODUCT_ERROR:
+      return { ...state, single_product_error: true };
+    case GET_SINGLE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        single_product: action.payload,
+        single_product_loading: false,
+        single_product_error: false,
+      };
     default:
       throw new Error("Unknown action");
   }
