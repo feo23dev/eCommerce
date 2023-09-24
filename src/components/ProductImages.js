@@ -1,8 +1,27 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const ProductImages = () => {
-  return <h4>product images</h4>;
+const ProductImages = ({ images }) => {
+  console.log("RESIMELER", images);
+  const [main, setMain] = useState(images[0].url);
+
+  return (
+    <Wrapper>
+      <img src={main} className="main"></img>
+      <div className="gallery">
+        {images.map((img) => {
+          return (
+            <img
+              key={img.id}
+              src={img.url}
+              alt={img.description}
+              onClick={() => setMain(img.url)}
+            ></img>
+          );
+        })}
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.section`

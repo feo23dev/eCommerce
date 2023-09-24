@@ -22,23 +22,67 @@ const SingleProductPage = () => {
     single_product,
   } = useProductsContext();
   const { id } = useParams();
-  console.log(id, "IDDDDDDDDDDDDDDDDDDDD");
-  const { name } = single_product;
+
+  const {
+    name,
+    price,
+    description,
+    stock,
+    stars,
+    review,
+    sku,
+    company,
+    images,
+  } = single_product;
 
   useEffect(() => {
     fetchSingleProduct(url, id);
     console.log("Fetch completed");
   }, []);
+  console.log("IMAAAGESSS", images);
 
   if (single_product_error) {
-    return <h1>ERRORRRR</h1>;
+    return <Error></Error>;
   }
   if (single_product_loading) {
-    return <h1>LOADING</h1>;
+    return <Loading></Loading>;
   }
   return (
     <>
-      <PageHero title={"products"} third={`/${name}`}></PageHero>
+      <Wrapper>
+        <PageHero title={"products"} third={`/ ${name}`}></PageHero>
+
+        {images && (
+          <div className="section-center section page">
+            <Link className="btn" to="/products">
+              Back to products
+            </Link>
+            <div className="product-center">
+              <ProductImages images={images}></ProductImages>
+              <section className="content">
+                <h2>{name}</h2>
+                <Stars stars={stars} />
+                <h5 className="price">{formatPrice(price)}</h5>
+                <p className="desc">{description}</p>
+                <p className="info">
+                  <span>Available : </span>
+                  {stock > 0 ? "In Stock" : "Out of Stock"}
+                </p>
+                <p className="info">
+                  <span>SKU : </span>
+                  {id}
+                </p>
+                <p className="info">
+                  <span>Brand : </span>
+                  {company}
+                </p>
+                <hr></hr>
+                {stock > 0 && <AddToCart></AddToCart>}
+              </section>
+            </div>
+          </div>
+        )}
+      </Wrapper>
     </>
   );
 };
