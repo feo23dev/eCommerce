@@ -18,6 +18,7 @@ import {
 const initialState = {
   isSidebarOpen: true,
   isError: false,
+  products: [],
   products_loading: false,
   single_product_loading: false,
   single_product_error: false,

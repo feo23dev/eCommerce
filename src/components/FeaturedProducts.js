@@ -11,12 +11,11 @@ const FeaturedProducts = () => {
   const { products, isError, products_loading } = useProductsContext();
 
   const navigate = useNavigate();
-  console.log("IsError", isError);
 
   let productsToFeature = [];
   let featuredProducts = [];
   if (products_loading) {
-    return <h1>LOADINGGGGGG</h1>;
+    return <h1>LOADING</h1>;
   }
   if (products) {
     products.map((product) => {

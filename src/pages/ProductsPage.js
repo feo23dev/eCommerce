@@ -4,9 +4,21 @@ import { Filters, ProductList, Sort, PageHero } from "../components";
 import { useProductsContext } from "../context/products_context";
 
 const ProductsPage = () => {
-  const data = useProductsContext();
-
-  return <h4>products pageSLOTHY</h4>;
+  return (
+    <main>
+      <PageHero title="products"></PageHero>
+      <Wrapper className="page">
+        <div className="section-center products">
+          <Filters></Filters>
+          <div>
+            {" "}
+            <Sort></Sort>
+            <ProductList></ProductList>
+          </div>
+        </div>
+      </Wrapper>
+    </main>
+  );
 };
 
 const Wrapper = styled.div`

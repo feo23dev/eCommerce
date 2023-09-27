@@ -73,8 +73,10 @@ const router = createBrowserRouter([
 ]);
 root.render(
   <ProductsProvider>
-    <RouterProvider router={router}>
-      <App />{" "}
-    </RouterProvider>
+    <FilterProvider>
+      <RouterProvider router={router}>
+        <App />{" "}
+      </RouterProvider>
+    </FilterProvider>
   </ProductsProvider>
 );

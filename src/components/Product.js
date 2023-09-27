@@ -5,8 +5,6 @@ import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 
 const Product = ({ image, name, price, id }) => {
-  const navigate = useNavigate();
-
   console.log("PRODUCT ID IS", id);
   return (
     <Wrapper>

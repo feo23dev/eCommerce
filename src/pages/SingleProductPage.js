@@ -30,7 +30,7 @@ const SingleProductPage = () => {
     stock,
     stars,
     reviews,
-    sku,
+    colors,
     company,
     images,
   } = single_product;
@@ -78,7 +78,12 @@ const SingleProductPage = () => {
                   {company}
                 </p>
                 <hr></hr>
-                {stock > 0 && <AddToCart></AddToCart>}
+                {stock > 0 && (
+                  <AddToCart
+                    single_product={single_product}
+                    id={id}
+                  ></AddToCart>
+                )}
               </section>
             </div>
           </div>
