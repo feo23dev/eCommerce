@@ -1,3 +1,4 @@
+import { act } from "react-dom/test-utils";
 import {
   LOAD_PRODUCTS,
   SET_LISTVIEW,
@@ -12,10 +13,14 @@ import {
 const filter_reducer = (state, action) => {
   switch (action.type) {
     case LOAD_PRODUCTS:
+      let maxPrice = action.payload.map((p) => p.price);
+      maxPrice = Math.max(...maxPrice);
+      console.log("Max Price", maxPrice);
       return {
         ...state,
         all_products: [...action.payload],
         filtered_products: [...action.payload],
+        filters: { ...state.filters, max_price: maxPrice, price: maxPrice },
       };
     case SET_GRIDVIEW:
       return { ...state, grid_view: true };
@@ -43,6 +48,62 @@ const filter_reducer = (state, action) => {
         );
       }
       return { ...state, filtered_products: tempProducts };
+    case UPDATE_FILTERS:
+      const { name, value } = action.payload;
+      return { ...state, filters: { ...state.filters, [name]: value } };
+
+    case FILTER_PRODUCTS:
+      const { all_products } = state;
+      const { text, category, company, color, price, shipping } = state.filters;
+      let temppProducts = [...all_products];
+      //filtering
+      //text
+      if (text) {
+        temppProducts = temppProducts.filter((product) => {
+          return product.name.toLowerCase().startsWith(text);
+        });
+      }
+      //category
+      if (category !== "all") {
+        temppProducts = temppProducts.filter((p) => p.category === category);
+      }
+      //company
+      if (company !== "all") {
+        temppProducts = temppProducts.filter((p) => p.company === company);
+      }
+
+      //colors
+      //p.colors is an array so we have 1 additional method (find)
+      if (color !== "all") {
+        temppProducts = temppProducts.filter((p) => {
+          return p.colors.find((c) => c === color);
+        });
+      }
+      //price
+      if (price !== "all") {
+        temppProducts = temppProducts.filter((p) => p.price <= price);
+      }
+
+      //shipping
+      if (shipping) {
+        temppProducts = temppProducts.filter((p) => p.shipping === true);
+      }
+
+      return { ...state, filtered_products: temppProducts };
+    case CLEAR_FILTERS:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          text: "",
+          company: "all",
+          category: "all",
+          color: "all",
+
+          price: state.filters.max_price,
+          shipping: false,
+        },
+      };
     default:
       return state;
   }

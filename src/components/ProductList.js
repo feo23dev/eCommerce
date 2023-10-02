@@ -5,7 +5,7 @@ import ListView from "./ListView";
 
 const ProductList = () => {
   const { filtered_products, grid_view } = useFilterContext();
-  console.log("Filtered Products", filtered_products);
+
   if (filtered_products.length < 1) {
     return <h5>Sorry,No Products matched your search</h5>;
   }
